@@ -40,3 +40,11 @@ def GetStandingVector(vector):
     return np.matrix('  {}; \
                         {} ; \
                         {} '.format( vector.n, vector.e,vector.d ))
+
+'''Calculates angle contrain in/out in radians'''
+def CalculateAngleConstrain(output_angle,actual_angle):
+    while output_angle - actual_angle < -np.pi:
+        output_angle = output_angle + 2 * np.pi
+    while output_angle - actual_angle > np.pi:
+        output_angle = output_angle - 2 * np.pi
+    return output_angle
