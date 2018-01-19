@@ -16,11 +16,11 @@ plt.show()
 #describe 3d range of view [min,max]
 view_limit_x = [-2,2]
 view_limit_y = [-2,2]
-view_limit_z = [0,4]
+view_limit_z = [0,6]
 
 #define time of sleep between loops
 sampling_time_s = 0.00001;
-loop_iteriations = 100 #condition to exit while loop
+loop_iteriations = 60 #condition to exit while loop
 
 """
 Drawing circle figure input parameters:
@@ -82,7 +82,7 @@ def DrawMAV2(figure,plane_position,plane_position_old):
     east = plane_position[0] - plane_position_old[0]
     north = plane_position[1] - plane_position_old[1]
     down = plane_position[2] - plane_position_old[2]
-    figure.quiver(plane_position[0], plane_position[1], plane_position[2], east, north, down, length=0.5, normalize=True)
+    figure.quiver(plane_position[0], plane_position[1], plane_position[2], east, north, down, length=0.5, normalize=True,color='r')
     
 
     
@@ -142,7 +142,7 @@ j = 0 # loop iterations counter
 
 #infinite loop
 
-while(i <= loop_iteriations):
+while(j <= loop_iteriations):
 	try:
 		j = j + 1.0
 		i = i +0.1
@@ -154,25 +154,17 @@ while(i <= loop_iteriations):
 		yy_old = np.sin(np.degrees(j -1))
 		zz_old = i - 0.1
 
-		#xx1 = np.cos(np.degrees(j))
-		#yy1 = np.sin(np.degrees(j))
-		#zz1 = 0
-
-		#xx1_old = np.cos(np.degrees(j -1))
-		#yy1_old = np.sin(np.degrees(j -1))
-		#zz1_old = 0
 		
 		CreateFigure(fig_MAV,view_limit_x,view_limit_y,view_limit_z,'East (x)','North (y)','Down (z)')
 
-		#DrawMAV(fig_MAV,[xx,yy,zz],np.degrees(90),i)
 		DrawMAV2(fig_MAV,[xx,yy,zz],[xx_old,yy_old,zz_old])
-		DrawMAVPath(fig_MAV,[xx,yy,zz],50)
+		DrawMAVPath(fig_MAV,[xx,yy,zz],25)
 
 		
-		DrawLine(fig_MAV,[0,0,0],[0.5,0,0.5],50)
+		DrawLine(fig_MAV,[2,-2,4],[0.2,0.3,0.5],50)
 		DrawCircle(fig_MAV,1,[0,0,0])
 
-		fig_MAV.text(view_limit_x[0],view_limit_y[0],view_limit_z[0],ComposeStatusString([xx,yy,zz]))
+		fig_MAV.text(view_limit_x[0],view_limit_y[0],view_limit_z[0],ComposeStatusString([xx,yy,zz],0,[0,0,0],[0.2,0.3,0.5],[0,0,0],1,0,0))
 
 		plt.show()
 		plt.pause(sampling_time_s)
@@ -183,6 +175,24 @@ while(i <= loop_iteriations):
 	except:
 		print("interrupted")
 		exit(1)
+
+CreateFigure(fig_MAV,view_limit_x,view_limit_y,view_limit_z,'East (x)','North (y)','Down (z)')
+
+#DrawMAV(fig_MAV,[xx,yy,zz],np.degrees(90),i)
+DrawMAV2(fig_MAV,[xx,yy,zz],[xx_old,yy_old,zz_old])
+DrawMAVPath(fig_MAV,[xx,yy,zz],25)
+
+
+DrawLine(fig_MAV,[2,-2,4],[0.2,0.3,0.5],50)
+DrawCircle(fig_MAV,1,[0,0,0])
+
+fig_MAV.text(view_limit_x[0],view_limit_y[0],view_limit_z[0],ComposeStatusString([xx,yy,zz],0,[0,0,0],[0.2,0.3,0.5],[0,0,0],1,0,0))
+
+
+
+
+
+
 """
 CreateFigure(fig_MAV,view_limit_x,view_limit_y,view_limit_z,'East (x)','North (y)','Down (z)')
 DrawMAV(fig_MAV,[i,i,i],np.radians(90*i),i)
