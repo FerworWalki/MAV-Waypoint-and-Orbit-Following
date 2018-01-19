@@ -91,8 +91,8 @@ class PathFollowing(object):
         psi = CalculateAngleConstrain(psi,actual_course_angle)
         print("Angle between north and vector from c to p [deg] ",np.degrees(psi))
         print ("Commanded height",height)
-        commanded_course_angle = psi + dir * ( (np.pi/2) + np.arctan( self.k_orbit * ((d - radius)/radius)))
-        print("Commanded course angle ",np.degrees(commanded_course_angle))
+        commanded_course_angle = psi + dir * ( (np.pi/2) + np.arctan( self.k_orbit * ((d - radius)/radius))) #formula 10.13
+        print("Commanded course angle [deg] ",np.degrees(commanded_course_angle))
         return commanded_course_angle, height
 
 

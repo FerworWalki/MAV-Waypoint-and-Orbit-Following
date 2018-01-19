@@ -28,10 +28,10 @@ def Get_Ri(input_radians):
     c = np.cos(rot_angle)
     s = np.sin(rot_angle)
     rot_matrix = np.matrix('{} {} {}; \
-							{} {} {}; \
-							{} {} {}'.format( c , s , 0 ,
-                                            -s , c , 0 ,
-                                             0 , 0 , 1 ))
+			    {} {} {}; \
+			    {} {} {}'.format( c , s , 0 ,
+                                             -s , c , 0 ,
+                                              0 , 0 , 1 ))
     return rot_matrix
 
 '''Return standing vector, from object
